@@ -20,7 +20,7 @@ public class PersonController {
   }
 
   @PostMapping
-  public void save(@RequestBody Person person){
+  public void save(@RequestBody Person person) {
     personService.save(person);
   }
 
