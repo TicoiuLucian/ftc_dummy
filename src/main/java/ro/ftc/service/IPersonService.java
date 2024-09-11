@@ -5,7 +5,7 @@ import ro.ftc.entity.Person;
 import java.util.List;
 
 public interface IPersonService {
-  List<Person> findAll();
+    List<Person> findAll();
 
-  void save(Person person);
+    void save(Person person);
 }

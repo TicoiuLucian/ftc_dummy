@@ -12,33 +12,33 @@ import lombok.*;
 @AllArgsConstructor
 public class Robot {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  @Column(nullable = false, unique = true)
-  private String name;
+    @Column(nullable = false, unique = true)
+    private String name;
 
-  @Column(nullable = false)
-  private Byte enginesNumber;
+    @Column(nullable = false)
+    private Byte enginesNumber;
 
-  @Column(nullable = false)
-  private Float length;
+    @Column(nullable = false)
+    private Float length;
 
-  @Column(nullable = false)
-  private Float width;
+    @Column(nullable = false)
+    private Float width;
 
-  @Column(nullable = false)
-  private Float weight;
+    @Column(nullable = false)
+    private Float weight;
 
-  @Column(nullable = false)
-  private Boolean expansionHub;
+    @Column(nullable = false)
+    private Boolean expansionHub;
 
-  @Transient
-  private Boolean isEligible;
+    @Transient
+    private Boolean isEligible;
 
-  @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-  @JsonBackReference
-  private Team team;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonBackReference
+    private Team team;
 
 }

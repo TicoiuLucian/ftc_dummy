@@ -12,16 +12,16 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
-  private final IPersonService personService;
+    private final IPersonService personService;
 
-  @GetMapping("/all")
-  public List<Person> findAll() {
-    return personService.findAll();
-  }
+    @GetMapping("/all")
+    public List<Person> findAll() {
+        return personService.findAll();
+    }
 
-  @PostMapping
-  public void save(@RequestBody Person person) {
-    personService.save(person);
-  }
+    @PostMapping
+    public void save(@RequestBody Person person) {
+        personService.save(person);
+    }
 
 }

@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class WelcomeController {
 
-  @GetMapping("/welcome")
-  public String welcomePage(final Model model) {
-    return "welcome";
-  }
+    @GetMapping("/welcome")
+    public String welcomePage(final Model model) {
+        return "welcome";
+    }
 
-  @GetMapping("/")
-  public String redirectToWelcome(final Model model) {
-    return "redirect:/welcome";
-  }
+    @GetMapping("/")
+    public String redirectToWelcome(final Model model) {
+        return "redirect:/welcome";
+    }
 }

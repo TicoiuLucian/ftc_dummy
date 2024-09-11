@@ -11,14 +11,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonService implements IPersonService {
 
-  private final PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
-  public List<Person> findAll() {
-    return personRepository.findAll();
-  }
+    public List<Person> findAll() {
+        return personRepository.findAll();
+    }
 
-  @Override
-  public void save(final Person person) {
-    personRepository.save(person);
-  }
+    @Override
+    public void save(final Person person) {
+        personRepository.save(person);
+    }
 }
