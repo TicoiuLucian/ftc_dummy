@@ -10,6 +10,6 @@ public class FtcApplication {
 		SpringApplication.run(FtcApplication.class, args);
 	}
 
-//comentariu cu ce vreau eu
+//comentariu 2
 
 }
