@@ -8,52 +8,155 @@
 
     <!-- Optional: jQuery and Popper.js for Bootstrap JS components -->
     <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
-
-    <!-- Bootstrap JS -->
     <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
-
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.2/css/all.min.css}"/>
+
+    <style>
+        body, html {
+            height: 100%;
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Table Container */
+        .table-container {
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #2e2e2e;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
+            width: 90%; /* Adjusted width for better alignment */
+            max-width: 1200px; /* Max-width for larger screens */
+        }
+
+        .table {
+            margin-bottom: 0;
+            border-collapse: separate;
+            border-spacing: 0 15px; /* Increased space between rows */
+        }
+
+        /* Table Header */
+        thead th {
+            background: linear-gradient(135deg, #4b4b4b, #2e2e2e);
+            color: #f4c542;
+            font-size: 1.15rem;
+            padding: 14px;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: 1px solid #3a3a3a; /* Subtle border */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+            letter-spacing: 1px; /* Space between letters */
+        }
+
+        thead th:not(:last-child) {
+            padding-right: 15px; /* Space between each header label */
+        }
+
+        /* Table Rows */
+        tbody tr {
+            background-color: #3a3a3a !important; /* Darker gray for rows */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #4d4d4d !important; /* Lighter gray on hover */
+            transform: scale(1.02); /* Slightly scale up on hover */
+        }
+
+        /* Ensure td background matches tr */
+        tbody td {
+            background-color: #3a3a3a !important; /* Matching cell background */
+            padding: 12px;
+            font-size: 1rem;
+            color: #e0e0e0;
+            border-top: none;
+        }
+
+        tbody td a {
+            color: #f56c6c;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        tbody td a:hover {
+            color: #ff7875;
+        }
+
+        /* Add Team Button fixed in the bottom-right */
+        .add-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .btn-warning {
+            font-size: 1.2rem;
+            padding: 12px 24px;
+            background-color: #f4c542;
+            border-color: #f4c542;
+            border-radius: 5px;
+        }
+
+        .btn-warning i {
+            margin-right: 8px;
+        }
+
+        .btn-warning:hover {
+            background-color: #e2b93f;
+            border-color: #e2b93f;
+        }
+    </style>
 </head>
 <body>
 
-<div class="row">
-    <div class="col-2"></div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="table-container text-center">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>National Id</th>
+                        <th>International Id</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="team : ${teams}">
+                        <td th:text="${team.id}"></td>
+                        <td th:text="${team.name}"></td>
+                        <td th:text="${team.country.label}"></td>
+                        <td th:text="${team.nationalId}"></td>
+                        <td th:text="${team.internationalId}"></td>
+                        <td>
+                            <a th:href="@{'/delete-team/' + ${team.id}}">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <div class="table-container text-center col-8">
-        <table class="table table-dark table-striped">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Country</th>
-                <th>National Id</th>
-                <th>International Id</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="team : ${teams}">
-                <td th:text="${team.id}"></td>
-                <td th:text="${team.name}"></td>
-                <td th:text="${team.nationalId}"></td>
-                <td th:text="${team.internationalId}"></td>
-                <td th:text="${team.country.label}"></td>
-                <td><a th:href="@{'/delete/' + ${team.id}}"><i class="fa-regular fa-trash-can"></i></a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-2">
-        <a class="add-button" th:href="@{/team}">
-            <button type="button" class="btn btn-warning">
-                <i class="fa-solid fa-robot">
-                    Add Team
-                </i>
-            </button>
-        </a>
-    </div>
+<!-- Add Team Button -->
+<div class="add-button">
+    <a th:href="@{/team}">
+        <button type="button" class="btn btn-warning">
+            <i class="fa-solid fa-robot"></i>
+            Add Team
+        </button>
+    </a>
 </div>
 
 <!-- Bootstrap JS (Optional) -->
