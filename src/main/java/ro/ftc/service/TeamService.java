@@ -37,8 +37,4 @@ public class TeamService implements ITeamService {
         teamRepository.deleteById(teamId);
     }
 
-    @Override
-    public void addTeam(Team team) {
-        teamRepository.save(team);
-    }
 }

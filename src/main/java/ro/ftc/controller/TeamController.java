@@ -57,7 +57,7 @@ public class TeamController {
   @PostMapping("/teams/add")
   public String addTeam(@ModelAttribute(name = "team") Team team, RedirectAttributes redirectAttributes) {
     try {
-      teamService.addTeam(team);
+      teamService.save(team);
       return "redirect:/teams/all";
     } catch (Exception e) {
       redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while adding the team.");

@@ -12,5 +12,4 @@ public interface ITeamService {
 
   void deleteTeam(Integer teamId);
 
-  void addTeam(Team team);
 }
