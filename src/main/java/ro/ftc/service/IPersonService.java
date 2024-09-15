@@ -8,4 +8,7 @@ public interface IPersonService {
   List<Person> findAll();
 
   void save(Person person);
+
+
+//  void deletePerson(Integer personId);
 }

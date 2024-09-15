@@ -34,6 +34,8 @@
             padding: 12px 25px;
             background-color: #28a745;
             border-color: #28a745;
+            display: block; /* Ensures each button is on a new line */
+            margin: 10px auto; /* Center and add vertical spacing */
         }
         .btn-success:hover {
             background-color: #218838;
@@ -46,6 +48,8 @@
 <div class="welcome-container">
     <h1>Welcome</h1>
     <a class="btn btn-success" th:href="@{/teams/all}">Go to Teams</a>
+    <a class="btn btn-success" th:href="@{/persons/all}">Go to Persons</a>
+    <a class="btn btn-success" th:href="@{/robots/all}">Go to Robots</a>
 </div>
 
 <!-- Bootstrap JS (Optional) -->
