@@ -36,4 +36,9 @@ public class TeamService implements ITeamService {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new RuntimeException("Team not found!"));
         teamRepository.deleteById(teamId);
     }
+
+    @Override
+    public void addTeam(Team team) {
+        teamRepository.save(team);
+    }
 }

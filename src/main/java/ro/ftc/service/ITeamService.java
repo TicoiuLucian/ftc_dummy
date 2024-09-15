@@ -11,4 +11,6 @@ public interface ITeamService {
   void save(Team team);
 
   void deleteTeam(Integer teamId);
+
+  void addTeam(Team team);
 }

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.ftc.entity.Team;
 import ro.ftc.service.ITeamService;
-import ro.ftc.service.TeamService;
 
 import java.util.List;
 
@@ -45,6 +44,23 @@ public class TeamController {
     } catch (Exception e) {
       e.printStackTrace();
       redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting the team.");
+      return "redirect:/error";
+    }
+  }
+
+  @GetMapping("/teams/add")
+  public String addTeam(Model model) {
+    model.addAttribute("team", new Team());
+    return "add-team";
+  }
+
+  @PostMapping("/teams/add")
+  public String addTeam(@ModelAttribute(name = "team") Team team, RedirectAttributes redirectAttributes) {
+    try {
+      teamService.addTeam(team);
+      return "redirect:/teams/all";
+    } catch (Exception e) {
+      redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while adding the team.");
       return "redirect:/error";
     }
   }
