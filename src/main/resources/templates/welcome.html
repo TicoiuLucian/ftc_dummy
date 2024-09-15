@@ -58,10 +58,33 @@
             border: none;
             transition: all 0.3s ease;
             box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+            margin: 10px;
         }
 
         .btn-custom:hover {
             background-color: #ffc107;
+            color: #ffffff;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Additional button styling */
+        .btn-secondary-custom {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            text-transform: uppercase;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+        }
+
+        .btn-secondary-custom:hover {
+            background-color: #003d7a;
             color: #ffffff;
             box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
             transform: translateY(-5px);
@@ -77,15 +100,15 @@
             from { transform: scale(0.5); }
             to { transform: scale(1); }
         }
-
     </style>
 </head>
 <body>
 
 <div class="welcome-container">
     <h1>WELCOME</h1>
-    <p>See all teams!</p>
+    <p>See all teams or view a person!</p>
     <a class="btn btn-custom" th:href="@{/teams/all}">GO TO TEAMS</a>
+    <a class="btn btn-secondary-custom" th:href="@{/persons/all}">VIEW PERSONS</a>
 </div>
 
 <!-- Bootstrap JS (Optional) -->
