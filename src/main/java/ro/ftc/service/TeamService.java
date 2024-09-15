@@ -30,4 +30,11 @@ public class TeamService implements ITeamService {
       team.setCountry(Country.valueOf(team.getNationalId().substring(0, 2)));
     }
   }
+
+
+  public void deleteTeam(Integer teamId ) {
+  Team team = teamRepository.findById(teamId)
+          .orElseThrow(() -> new RuntimeException("Article not found"));
+  teamRepository.deleteById(teamId);
+  }
 }

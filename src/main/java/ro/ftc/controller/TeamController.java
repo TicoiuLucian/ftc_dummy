@@ -3,10 +3,8 @@ package ro.ftc.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.ftc.entity.Team;
 import ro.ftc.service.ITeamService;
 
@@ -37,5 +35,18 @@ public class TeamController {
     teamService.save(team);
     return "redirect:/all-teams";
   }
+
+
+  @GetMapping("/delete-team/{teamId}")
+  public String deleteTeam(@PathVariable Long teamId, RedirectAttributes redirectAttributes) {
+    try {
+      teamService.deleteTeam(Math.toIntExact(teamId));
+      return "redirect:/teams/all";
+    } catch (Exception e) {
+      e.printStackTrace();
+      redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting the team.");
+      return "redirect:/error";
+    }
+  }
+
 }
-//fff

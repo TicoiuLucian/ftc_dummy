@@ -9,4 +9,6 @@ public interface ITeamService {
   List<Team> findAll();
 
   void save(Team team);
+
+  void deleteTeam(Integer teamId);
 }

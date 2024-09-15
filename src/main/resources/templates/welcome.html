@@ -5,17 +5,88 @@
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Full-screen gradient background with elegant design */
+        body {
+            background: linear-gradient(135deg, rgba(255, 160, 122, 0.8), rgba(255, 99, 71, 0.8)), url('https://example.com/abstract-background.jpg') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
 
+        .welcome-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        h1 {
+            font-size: 72px;
+            color: #ff6347;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        p {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 40px;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        /* Custom 3D effect button */
+        .btn-custom {
+            background: linear-gradient(135deg, #28a745, #56c88a);
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            text-transform: uppercase;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-custom:hover {
+            background-color: #ffc107;
+            color: #ffffff;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Fade-in and zoom-in animations for the page elements */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+
+    </style>
 </head>
 <body>
 
-
-<H1>
-    WELCOME
-</H1>
-
-<a class="btn btn-success" th:href="@{/teams/all}">GO TO TEAMS</a>
-
+<div class="welcome-container">
+    <h1>WELCOME</h1>
+    <p>See all teams!</p>
+    <a class="btn btn-custom" th:href="@{/teams/all}">GO TO TEAMS</a>
+</div>
 
 <!-- Bootstrap JS (Optional) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
