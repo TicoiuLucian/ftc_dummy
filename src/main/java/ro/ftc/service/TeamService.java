@@ -25,9 +25,16 @@ public class TeamService implements ITeamService {
     teamRepository.save(team);
   }
 
+  @Override
+  public void deleteTeam(Integer teamId) {
+    teamRepository.deleteById(teamId);
+  }
+
   private void populateCountry(List<Team> teams) {
     for (Team team : teams) {
       team.setCountry(Country.valueOf(team.getNationalId().substring(0, 2)));
     }
   }
+
+
 }
