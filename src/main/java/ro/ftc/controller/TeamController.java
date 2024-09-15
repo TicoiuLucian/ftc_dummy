@@ -49,4 +49,21 @@ public class TeamController {
     }
   }
 
+  @GetMapping("/add-team")
+  public String addTeam(Model model) {
+    model.addAttribute("team", new Team());
+    return "add-team";
+  }
+
+  @PostMapping("/add-team")
+  public String addTeam(@ModelAttribute(name = "team") Team team, RedirectAttributes redirectAttributes) {
+    try {
+      teamService.addTeam(team);
+      return "redirect:/teams/all";
+    } catch (Exception e) {
+      redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while adding the article.");
+      return "redirect:/error";
+    }
+  }
+
 }

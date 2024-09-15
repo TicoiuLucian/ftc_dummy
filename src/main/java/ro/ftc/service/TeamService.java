@@ -6,6 +6,7 @@ import ro.ftc.entity.Country;
 import ro.ftc.entity.Team;
 import ro.ftc.repository.TeamRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -36,5 +37,9 @@ public class TeamService implements ITeamService {
   Team team = teamRepository.findById(teamId)
           .orElseThrow(() -> new RuntimeException("Article not found"));
   teamRepository.deleteById(teamId);
+  }
+
+  public void addTeam(Team team) {
+    teamRepository.save(team);
   }
 }
