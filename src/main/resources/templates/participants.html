@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Teams</title>
+    <title>Participants</title>
     <meta charset="UTF-8">
 
     <!-- Bootstrap CSS -->
@@ -23,43 +23,39 @@
                 id="table"
                 data-toggle="table"
                 data-sortable="true"
-                class="table table-primary table-striped table-hover table-bordered">
+                class="table table-sm table-primary table-striped table-hover table-bordered">
             <thead class="thead-dark">
             <tr>
                 <th data-field="id" data-sortable="true">Id</th>
+                <th data-field="personalNumber" data-sortable="true">Personal Number</th>
                 <th data-field="name" data-sortable="true">Name</th>
-                <th data-field="country" data-sortable="true">Country</th>
-                <th data-field="nationalId" data-sortable="true">National Id</th>
-                <th data-field="internationalId" data-sortable="true">International Id</th>
+                <th data-field="email" data-sortable="true">Email</th>
+                <th data-field="roles" data-sortable="true">Roles</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="team : ${teams}">
-                <td th:text="${team.id}"></td>
-                <td th:text="${team.name}"></td>
-                <td th:text="${team.country.label}"></td>
-                <td th:text="${team.nationalId}"></td>
-                <td th:text="${team.internationalId}"></td>
-                <td><a th:href="@{'/delete/' + ${team.id}}"><i class="fa-regular fa-trash-can"></i></a></td>
+            <tr th:each="participant : ${participants}">
+                <td th:text="${participant.id}"></td>
+                <td th:text="${participant.personalNumber}"></td>
+                <td th:text="${participant.name}"></td>
+                <td th:text="${participant.email}"></td>
+                <td>
+                    <ul>
+                        <li th:each="role : ${participant.roles}" th:text="${role}"></li>
+                    </ul>
+                </td>
+                <td><a th:href="@{'/delete/' + ${participant.id}}"><i class="fa-regular fa-trash-can"></i></a></td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="col-2 d-flex flex-column gap-2">
-        <a class="add-button" th:href="@{/team}">
+    <div class="col-2">
+        <a class="add-button" th:href="@{/person/participants/add}">
             <button type="button" class="btn btn-warning w-100">
-                <i class="fa-solid fa-robot">
-                    Add Team
-                </i>
-            </button>
-        </a>
-
-        <a class="participants-button" th:href="@{/person/participants}">
-            <button type="button" class="btn btn-primary w-100">
-                <i class="fa-solid fa-users">
-                    View Participants
+                <i class="fa-solid fa-user-plus">
+                    Add Participant
                 </i>
             </button>
         </a>
