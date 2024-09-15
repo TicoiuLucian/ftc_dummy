@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Teams</title>
+    <title>All Robots</title>
     <meta charset="UTF-8">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
@@ -125,34 +125,40 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-10">
-            <h1>Teams List</h1>
+            <h1>All Robots List</h1>
 
             <div class="table-container">
                 <table class="table table-hover table-bordered">
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>National Id</th>
-                        <th>International Id</th>
+                        <th>Robot Name</th>
+                        <th>Engines Number</th>
+                        <th>Length (m)</th>
+                        <th>Width (m)</th>
+                        <th>Weight (kg)</th>
+                        <th>Expansion Hub</th>
+                        <th>Team</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="team : ${teams}">
-                        <td th:text="${team.id}"></td>
-                        <td th:text="${team.name}"></td>
-                        <td th:text="${team.country.label}"></td>
-                        <td th:text="${team.nationalId}"></td>
-                        <td th:text="${team.internationalId}"></td>
+                    <tr th:each="robot : ${robots}">
+                        <td th:text="${robot.id}"></td>
+                        <td th:text="${robot.name}"></td>
+                        <td th:text="${robot.enginesNumber}"></td>
+                        <td th:text="${robot.length}"></td>
+                        <td th:text="${robot.width}"></td>
+                        <td th:text="${robot.weight}"></td>
+                        <td th:text="${robot.expansionHub ? 'Yes' : 'No'}"></td>
+                        <td th:text="${robot.team.name}"></td>
                         <td>
-                            <!-- Update Team Button -->
-                            <a class="btn btn-link btn-update" th:href="@{/teams/update/{id}(id=${team.id})}" title="Update">
+                            <!-- Update Robot Button -->
+                            <a class="btn btn-link btn-update" th:href="@{/robots/update/{id}(id=${robot.id})}" title="Update">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <!-- Delete Team Button -->
-                            <form th:action="@{/delete-team/{id}(id=${team.id})}" method="post" style="display: inline;">
+                            <!-- Delete Robot Button -->
+                            <form th:action="@{/delete-robot/{id}(id=${robot.id})}" method="post" style="display: inline;">
                                 <button type="submit" class="btn btn-link text-danger" title="Delete">
                                     <i class="fa-regular fa-trash-can"></i>
                                 </button>
@@ -160,7 +166,6 @@
                         </td>
                     </tr>
                     </tbody>
-
                 </table>
             </div>
 

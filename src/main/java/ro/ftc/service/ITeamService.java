@@ -8,5 +8,9 @@ public interface ITeamService {
 
   List<Team> findAll();
 
+  Team findById(Integer id);
+
   void save(Team team);
+
+  void deleteTeam(Integer id);
 }

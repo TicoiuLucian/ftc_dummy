@@ -39,6 +39,6 @@ public class Robot {
 
   @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   @JsonBackReference
+  @JoinColumn(name = "team_id", nullable = false)
   private Team team;
-
 }

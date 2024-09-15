@@ -2,6 +2,7 @@ package ro.ftc.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ro.ftc.entity.Country;
 import ro.ftc.entity.Team;
 import ro.ftc.repository.TeamRepository;
@@ -21,6 +22,7 @@ public class TeamService implements ITeamService {
   }
 
   @Override
+  @Transactional
   public void save(final Team team) {
     teamRepository.save(team);
   }
@@ -29,5 +31,19 @@ public class TeamService implements ITeamService {
     for (Team team : teams) {
       team.setCountry(Country.valueOf(team.getNationalId().substring(0, 2)));
     }
+  }
+
+  @Override
+  public Team findById(Integer id) {
+    return teamRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Team not found"));
+  }
+
+  @Override
+  @Transactional
+  public void deleteTeam(Integer id) {
+    Team team = teamRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Team not found"));
+    teamRepository.deleteById(id);
   }
 }
