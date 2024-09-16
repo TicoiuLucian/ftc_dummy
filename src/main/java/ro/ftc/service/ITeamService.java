@@ -6,11 +6,10 @@ import java.util.List;
 
 public interface ITeamService {
 
-  List<Team> findAll();
+  List<Team> findAll(final String direction, final String property);
 
-  void save(Team team);
+  void save(final Team team);
 
-  void delete(Integer id);
+  void delete(final Integer id);
 
-  void sortByOpr(Float opr);
 }

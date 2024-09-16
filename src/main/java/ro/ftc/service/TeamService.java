@@ -1,6 +1,7 @@
 package ro.ftc.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ro.ftc.entity.Country;
 import ro.ftc.entity.Team;
@@ -14,8 +15,15 @@ public class TeamService implements ITeamService {
   private final TeamRepository teamRepository;
 
   @Override
-  public List<Team> findAll() {
-    List<Team> all = teamRepository.findAll();
+  public List<Team> findAll(
+          final String direction,
+          final String property) {
+    List<Team> all;
+    if (direction == null || property == null) {
+      all = teamRepository.findAll();
+    } else {
+      all = teamRepository.findAll(Sort.by(Sort.Direction.valueOf(direction), property));
+    }
     populateCountry(all);
     return all;
   }
@@ -30,12 +38,10 @@ public class TeamService implements ITeamService {
       team.setCountry(Country.valueOf(team.getNationalId().substring(0, 2)));
     }
   }
+
   @Override
-  public void delete(Integer id){
+  public void delete(Integer id) {
     teamRepository.deleteById(id);
   }
-  @Override
-  public void sortByOpr(Float opr){
 
-  }
 }

@@ -16,8 +16,11 @@ public class TeamController {
   private final ITeamService teamService;
 
   @GetMapping("/teams/all")
-  public String getAllTeams(final Model model) {
-    List<Team> teams = teamService.findAll();
+  public String getAllTeams(
+          @RequestParam(required = false) String direction,
+          @RequestParam(required = false) String property,
+          final Model model) {
+    List<Team> teams = teamService.findAll(direction, property);
     model.addAttribute("teams", teams);
     return "all-teams";
   }
@@ -34,6 +37,7 @@ public class TeamController {
     teamService.save(team);
     return "redirect:/all-teams";
   }
+
   @PostMapping("/delete-team/{id}")
   public String deleteTeam(@PathVariable("id") Integer id) {
     teamService.delete(id);
