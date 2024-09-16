@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.ftc.entity.Team;
 import ro.ftc.service.ITeamService;
@@ -64,9 +63,4 @@ public class TeamController {
     return "redirect:/teams/all";
   }
 
-  @PostMapping("/delete-team/{id}")
-  public String deleteTeam(@PathVariable("id") Integer id) {
-    teamService.delete(id);
-    return "redirect:/teams/all";
-  }
 }

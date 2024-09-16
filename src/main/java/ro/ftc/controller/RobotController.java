@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.ftc.entity.Robot;
 import ro.ftc.entity.Team;
 import ro.ftc.service.IRobotService;
@@ -34,7 +33,7 @@ public class RobotController {
 
     @GetMapping("/robots/add")
     public String showAddRobotForm(Model model) {
-        List<Team> teams = teamService.findAll();
+        List<Team> teams = teamService.findAll(null, null);
         model.addAttribute("teams", teams);
         model.addAttribute("robot", new Robot());
         return "add-robot";
@@ -49,7 +48,7 @@ public class RobotController {
     @GetMapping("/robots/update/{id}")
     public String showUpdateRobotForm(@PathVariable Integer id, Model model) {
         Robot robot = robotService.findById(id);
-        List<Team> teams = teamService.findAll();
+        List<Team> teams = teamService.findAll(null, null);
         model.addAttribute("robot", robot);
         model.addAttribute("teams", teams);
         return "update-robot";

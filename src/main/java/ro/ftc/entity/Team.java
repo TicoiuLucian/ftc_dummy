@@ -30,7 +30,6 @@ public class Team {
   @Column(nullable = false)
   private float opr;
 
-
   @Transient
   private Country country;
 

@@ -129,86 +129,75 @@
 </head>
 <body>
 
-<div class="row">
-    <div class="col-2"></div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10">
+            <h1>Teams List</h1>
 
-    <div class="table-container">
-        <table class="table table-hover table-bordered">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name
-                    <a type="button"
-                       th:onclick="|window.location.href='/teams/all?property=name&direction=ASC'|">
-                        <i class="fa-solid fa-arrow-up"> </i>
-                    </a>
-                    <a type="button"
-                       th:onclick="|window.location.href='/teams/all?property=name&direction=DESC'|">
-                        <i class="fa-solid fa-arrow-down"> </i>
-                    </a></th>
-                <th>Country</th>
-                <th>National Id</th>
-                <th>International Id</th>
-                <th>Actions</th>
-                <td>
-                    <!-- Update Team Button -->
-                    <a class="btn btn-link btn-update" th:href="@{/teams/update/{id}(id=${team.id})}" title="Update">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <!-- Delete Team Button -->
-                    <form th:action="@{/delete-team/{id}(id=${team.id})}" method="post" style="display: inline;">
-                        <button type="submit" class="btn btn-link text-danger" title="Delete">
-                            <i class="fa-regular fa-trash-can"></i>
-                        </button>
-                    </form>
-                </td>
-                <th>OPR
-                    <a type="button"
-                            th:onclick="|window.location.href='/teams/all?property=opr&direction=ASC'|">
-                        <i class="fa-solid fa-arrow-up"> </i>
-                    </a>
-                    <a type="button"
-                            th:onclick="|window.location.href='/teams/all?property=opr&direction=DESC'|">
-                        <i class="fa-solid fa-arrow-down"> </i>
-                    </a>
-                <th>Delete</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="team : ${teams}">
-                <td th:text="${team.id}"></td>
-                <td th:text="${team.name}"></td>
-                <td th:text="${team.country.label}"></td>
-                <td th:text="${team.internationalId}"></td>
-                <td th:text="${team.nationalId}"></td>
-                <td th:text="${team.opr}"></td>
-                <td>
-                    <form th:action="@{/delete-team/{id}(id=${team.id})}" method="post" class="d-inline">
-                        <button type="submit" class="btn btn-link p-0">
-                            <i class="fa-regular fa-trash-can"></i>
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-2">
-        <a class="add-button" th:href="@{/team}">
-            <button type="button" class="btn btn-warning">
-                <i class="fa-solid fa-robot">
-                    Add Team
-                </i>
-            </button>
-        </a>
-        <!-- Return to Welcome Page Button -->
-        <div class="text-center">
-            <a href="/welcome" class="btn btn-primary btn-return">Return to Welcome Page</a>
+            <div class="table-container">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name
+                            <a type="button"
+                               th:onclick="|window.location.href='/teams/all?property=name&direction=ASC'|">
+                                <i class="fa-solid fa-arrow-up"> </i>
+                            </a>
+                            <a type="button"
+                               th:onclick="|window.location.href='/teams/all?property=name&direction=DESC'|">
+                                <i class="fa-solid fa-arrow-down"> </i>
+                            </a></th>
+                        <th>Country</th>
+                        <th>National Id</th>
+                        <th>International Id</th>
+                        <th>OPR
+                            <a type="button"
+                               th:onclick="|window.location.href='/teams/all?property=opr&direction=ASC'|">
+                                <i class="fa-solid fa-arrow-up"> </i>
+                            </a>
+                            <a type="button"
+                               th:onclick="|window.location.href='/teams/all?property=opr&direction=DESC'|">
+                                <i class="fa-solid fa-arrow-down"> </i>
+                            </a>
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="team : ${teams}">
+                        <td th:text="${team.id}"></td>
+                        <td th:text="${team.name}"></td>
+                        <td th:text="${team.country.label}"></td>
+                        <td th:text="${team.internationalId}"></td>
+                        <td th:text="${team.nationalId}"></td>
+                        <td th:text="${team.opr}"></td>
+                        <td>
+                            <!-- Update Team Button -->
+                            <a class="btn btn-link btn-update" th:href="@{/teams/update/{id}(id=${team.id})}"
+                               title="Update">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- Delete Team Button -->
+                            <form th:action="@{/delete-team/{id}(id=${team.id})}" method="post"
+                                  style="display: inline;">
+                                <button type="submit" class="btn btn-link text-danger" title="Delete">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-2">
+                <div class="text-center">
+                    <a href="/welcome" class="btn btn-primary btn-return">Return to Welcome Page</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 <!-- Bootstrap JS (Optional) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
