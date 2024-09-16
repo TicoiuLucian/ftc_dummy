@@ -40,5 +40,6 @@ public class TeamController {
     teamService.deleteTeam(id);
     return "redirect:/teams/all";
   }
+
 }
 

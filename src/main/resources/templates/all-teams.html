@@ -14,10 +14,48 @@
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.2/css/all.min.css}"/>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, black, purple);
+            min-height: 100vh;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        h1 {
+            color: #8C55C2;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 3rem;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .btn-warning {
+            color: #fff;
+        }
+
+        .add-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="row">
+    <div class="col-12">
+        <h1>FTC Robotics Team</h1>
+    </div>
+
     <div class="col-2"></div>
 
     <div class="table-container text-center col-8">
@@ -36,9 +74,9 @@
             <tr th:each="team : ${teams}">
                 <td th:text="${team.id}"></td>
                 <td th:text="${team.name}"></td>
+                <td th:text="${team.country.label}"></td>
                 <td th:text="${team.nationalId}"></td>
                 <td th:text="${team.internationalId}"></td>
-                <td th:text="${team.country.label}"></td>
                 <td>
                     <form th:action="@{'/team/' + ${team.id}}" method="post">
                         <input type="hidden" name="_method" value="delete"/>
@@ -51,13 +89,8 @@
             </tbody>
         </table>
     </div>
-    <div class="col-2">
-        <a class="add-button" th:href="@{/team}">
-            <button type="button" class="btn btn-warning">
-                <i class="fa-solid fa-robot"></i> Add Team
-            </button>
-        </a>
-    </div>
+
+
 </div>
 
 </body>
