@@ -3,6 +3,7 @@ package ro.ftc.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ro.ftc.entity.Country;
 import ro.ftc.entity.Team;
 import ro.ftc.repository.TeamRepository;
@@ -29,6 +30,7 @@ public class TeamService implements ITeamService {
   }
 
   @Override
+  @Transactional
   public void save(final Team team) {
     teamRepository.save(team);
   }
@@ -40,7 +42,16 @@ public class TeamService implements ITeamService {
   }
 
   @Override
-  public void delete(Integer id) {
+  public Team findById(Integer id) {
+    return teamRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Team not found"));
+  }
+
+  @Override
+  @Transactional
+  public void deleteTeam(Integer id) {
+    teamRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Team not found"));
     teamRepository.deleteById(id);
   }
 

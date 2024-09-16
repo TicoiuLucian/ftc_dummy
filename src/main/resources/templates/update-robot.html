@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Robot</title>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
+
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Update Robot</h1>
+
+    <!-- Display error message if it exists -->
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <form action="/robots/update" method="post" id="updateRobotForm">
+        <!-- Robot ID (hidden) -->
+        <input type="hidden" th:value="${robot.id}" name="id">
+
+        <!-- Robot Name -->
+        <div class="form-group">
+            <label for="name" class="form-label">Robot Name</label>
+            <input type="text" class="form-control" id="name" name="name" th:value="${robot.name}" required>
+        </div>
+
+        <!-- Engines Number -->
+        <div class="form-group">
+            <label for="enginesNumber" class="form-label">Engines Number</label>
+            <input type="number" class="form-control" id="enginesNumber" name="enginesNumber" th:value="${robot.enginesNumber}" required>
+        </div>
+
+        <!-- Length -->
+        <div class="form-group">
+            <label for="length" class="form-label">Length</label>
+            <input type="number" step="0.01" class="form-control" id="length" name="length" th:value="${robot.length}" required>
+        </div>
+
+        <!-- Width -->
+        <div class="form-group">
+            <label for="width" class="form-label">Width</label>
+            <input type="number" step="0.01" class="form-control" id="width" name="width" th:value="${robot.width}" required>
+        </div>
+
+        <!-- Weight -->
+        <div class="form-group">
+            <label for="weight" class="form-label">Weight</label>
+            <input type="number" step="0.01" class="form-control" id="weight" name="weight" th:value="${robot.weight}" required>
+        </div>
+
+        <!-- Expansion Hub -->
+        <div class="form-group">
+            <label for="expansionHub" class="form-label">Expansion Hub</label>
+            <select class="form-control" id="expansionHub" name="expansionHub" required>
+                <option th:value="true" th:text="'Yes'" th:selected="${robot.expansionHub}"></option>
+                <option th:value="false" th:text="'No'" th:selected="${!robot.expansionHub}"></option>
+            </select>
+        </div>
+
+        <!-- Team Association -->
+        <div class="form-group">
+            <label for="team" class="form-label">Team</label>
+            <select class="form-control" id="team" name="team.id" required>
+                <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}" th:selected="${team.id == robot.team.id}"></option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn" class="btn-submit">Update Robot</button>
+    </form>
+</div>
+
+<div class="text-center">
+    <a href="/robots/all" class="btn btn-primary btn-return">Return to Robots Page</a>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

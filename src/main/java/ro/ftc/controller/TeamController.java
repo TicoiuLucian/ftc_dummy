@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ro.ftc.entity.Team;
 import ro.ftc.service.ITeamService;
 
@@ -25,17 +27,41 @@ public class TeamController {
     return "all-teams";
   }
 
-  @GetMapping("/team")
+  @PostMapping("/delete-team/{id}")
+  public String deleteTeam(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+    try {
+      teamService.deleteTeam(id);
+      return "redirect:/teams/all";
+    } catch (Exception e) {
+      redirectAttributes.addFlashAttribute("errorMessage", "An error occurred while deleting the team.");
+      return "redirect:/teams/all";
+    }
+  }
+
+  @GetMapping("/teams/add")
   public String showTeamForm(Model model) {
     Team team = new Team();
     model.addAttribute("team", team);
     return "add-team";
   }
 
-  @PostMapping("/team")
+  @PostMapping("/teams/add")
   public String addTeam(@ModelAttribute Team team) {
     teamService.save(team);
-    return "redirect:/all-teams";
+    return "redirect:/teams/all";
+  }
+
+  @GetMapping("/teams/update/{id}")
+  public String showUpdateTeamForm(@PathVariable Integer id, Model model) {
+    Team team = teamService.findById(id);
+    model.addAttribute("team", team);
+    return "update-team";
+  }
+
+  @PostMapping("/teams/update")
+  public String updateTeam(@ModelAttribute Team team) {
+    teamService.save(team);
+    return "redirect:/teams/all";
   }
 
   @PostMapping("/delete-team/{id}")

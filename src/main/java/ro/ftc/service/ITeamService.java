@@ -8,8 +8,9 @@ public interface ITeamService {
 
   List<Team> findAll(final String direction, final String property);
 
-  void save(final Team team);
+  Team findById(Integer id);
 
-  void delete(final Integer id);
+  void save(Team team);
 
+  void deleteTeam(Integer id);
 }

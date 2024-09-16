@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Robots</title>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.2/css/all.min.css}"/>
+
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 60px; /* Space from the top */
+        }
+
+        .table-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px; /* Space below the title */
+            font-weight: bold;
+            color: #333;
+            font-size: 2.5rem; /* Larger font size */
+            letter-spacing: 1px; /* Spacing between letters */
+        }
+
+        .btn-return {
+            margin-top: 20px; /* Space above the button */
+            display: block; /* Ensures the button is on a new line */
+            width: fit-content; /* Adjusts button width to content */
+            margin-left: auto;
+            margin-right: auto; /* Centers the button horizontally */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        thead th {
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 12px;
+        }
+
+        tbody td {
+            text-align: center;
+            padding: 12px;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        tbody tr {
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        tbody tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        tbody td a {
+            color: #dc3545;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        tbody td a:hover {
+            color: #c82333;
+        }
+
+        tbody td .btn-update {
+            color: #007bff;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        tbody td .btn-update:hover {
+            color: #0056b3;
+        }
+
+        /* Rounded corners for the table */
+        table thead th:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        table thead th:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        table tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+
+        table tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10">
+            <h1>All Robots List</h1>
+
+            <div class="table-container">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Robot Name</th>
+                        <th>Engines Number</th>
+                        <th>Length (m)</th>
+                        <th>Width (m)</th>
+                        <th>Weight (kg)</th>
+                        <th>Expansion Hub</th>
+                        <th>Team</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="robot : ${robots}">
+                        <td th:text="${robot.id}"></td>
+                        <td th:text="${robot.name}"></td>
+                        <td th:text="${robot.enginesNumber}"></td>
+                        <td th:text="${robot.length}"></td>
+                        <td th:text="${robot.width}"></td>
+                        <td th:text="${robot.weight}"></td>
+                        <td th:text="${robot.expansionHub ? 'Yes' : 'No'}"></td>
+                        <td th:text="${robot.team.name}"></td>
+                        <td>
+                            <!-- Update Robot Button -->
+                            <a class="btn btn-link btn-update" th:href="@{/robots/update/{id}(id=${robot.id})}" title="Update">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <!-- Delete Robot Button -->
+                            <form th:action="@{/delete-robot/{id}(id=${robot.id})}" method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-link text-danger" title="Delete">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Return to Welcome Page Button -->
+            <div class="text-center">
+                <a href="/welcome" class="btn btn-primary btn-return">Return to Welcome Page</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

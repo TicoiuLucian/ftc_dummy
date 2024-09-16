@@ -41,6 +41,6 @@ public class Team {
           inverseJoinColumns = @JoinColumn(name = "person_id"))
   private List<Person> personList = new ArrayList<>();
 
-  @OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "team", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Robot> robotList = new ArrayList<>();
 }
