@@ -38,7 +38,7 @@
             <tr th:each="team : ${teams}">
                 <td th:text="${team.id}"></td>
                 <td th:text="${team.name}"></td>
-                <td th:text="${team.country.label}"></td>
+                <td th:text="${team.country != null ? team.country.label : 'N/A'}"></td>
                 <td th:text="${team.nationalId}"></td>
                 <td th:text="${team.internationalId}"></td>
                 <td><a th:href="@{'/delete/' + ${team.id}}"><i class="fa-regular fa-trash-can"></i></a></td>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="col-2 d-flex flex-column gap-2">
-        <a class="add-button" th:href="@{/team}">
+        <a class="add-button" th:href="@{/add-team}">
             <button type="button" class="btn btn-warning w-100">
                 <i class="fa-solid fa-robot">
                     Add Team

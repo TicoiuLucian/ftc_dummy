@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Team</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Add your CSS link here -->
+    <style>
+        /* Flexbox container for centering */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Container to wrap the form */
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* Form elements spacing */
+        .form-container div {
+            margin-bottom: 15px;
+        }
+
+        /* Submit button styling */
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Input field styling */
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Add New Team</h1>
+
+    <form th:action="@{/add-team}" th:object="${team}" method="post">
+        <div>
+            <label for="name">Team Name:</label>
+            <input type="text" id="name" th:field="*{name}" placeholder="Enter team name" required>
+        </div>
+
+
+        <div>
+            <label for="nationalId">National ID:</label>
+            <input type="text" id="nationalId" th:field="*{nationalId}" placeholder="Enter national ID" required>
+        </div>
+
+        <div>
+            <label for="internationalId">International ID:</label>
+            <input type="number" id="internationalId" th:field="*{internationalId}" placeholder="Enter international ID" required>
+        </div>
+
+<!--        <div>-->
+<!--            <label for="country">Country:</label>-->
+<!--            <select id="country" th:field="*{country}">-->
+<!--                <option th:each="country : ${countries}"-->
+<!--                        th:value="${country.name()}"-->
+<!--                        th:text="${country.label}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+        <div>
+            <label for="personList">Select Participants (optional):</label>
+            <select id="personList" th:field="*{personList}" multiple>
+                <option th:each="participant : ${participants}" th:value="${participant.id}" th:text="${participant.name}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label for="robotList">Select Robots (optional):</label>
+            <select id="robotList" th:field="*{robotList}" multiple>
+                <option th:each="robot : ${robots}" th:value="${robot.id}" th:text="${robot.name}"></option>
+            </select>
+        </div>
+
+        <div>
+            <button type="submit">Add Team</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
