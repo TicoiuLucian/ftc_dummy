@@ -110,18 +110,18 @@ INSERT INTO person_roles (person_id, role) VALUES
 (49, 'PHOTOGRAPHER'),
 (50, 'MARKETER');
 
-INSERT INTO team (name, national_id, international_id) VALUES
-('Team Alpha', 'RO001', 101),
-('Team Beta', 'EN001', 102),
-('Team Gamma', 'ES001', 103),
-('Team Delta', 'IT001', 104),
-('Team Epsilon', 'US001', 105),
-('Team Zeta', 'RO002', 106),
-('Team Eta', 'EN002', 107),
-('Team Theta', 'ES002', 108),
-('Team Iota', 'IT002', 109),
-('Team Kappa', 'US002', 110),
-('Team Omega', 'RO010', 150);
+INSERT INTO team (name, national_id, international_id, opr) VALUES
+('Team Alpha', 'RO001', 101, 20),
+('Team Beta', 'EN001', 102, 49),
+('Team Gamma', 'ES001', 103, 50),
+('Team Delta', 'IT001', 104, 20),
+('Team Epsilon', 'US001', 105, 420),
+('Team Zeta', 'RO002', 106, 34),
+('Team Eta', 'EN002', 107, 43),
+('Team Theta', 'ES002', 108, 0),
+('Team Iota', 'IT002', 109, 70),
+('Team Kappa', 'US002', 110, 50),
+('Team Omega', 'RO010', 150, 20);
 
 INSERT INTO robot (name, engines_number, length, width, weight, expansion_hub, team_id) VALUES
 ('Robot Alpha1', 4, 1.5, 1.2, 50.0, TRUE, 1),
