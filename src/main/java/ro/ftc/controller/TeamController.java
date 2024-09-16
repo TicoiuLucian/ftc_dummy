@@ -3,10 +3,7 @@ package ro.ftc.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ro.ftc.entity.Team;
 import ro.ftc.service.ITeamService;
 
@@ -36,5 +33,10 @@ public class TeamController {
   public String addTeam(@ModelAttribute Team team) {
     teamService.save(team);
     return "redirect:/all-teams";
+  }
+  @PostMapping("/delete-team/{id}")
+  public String deleteTeam(@PathVariable("id") Integer id) {
+    teamService.delete(id);
+    return "redirect:/teams/all";
   }
 }

@@ -30,4 +30,12 @@ public class TeamService implements ITeamService {
       team.setCountry(Country.valueOf(team.getNationalId().substring(0, 2)));
     }
   }
+  @Override
+  public void delete(Integer id){
+    teamRepository.deleteById(id);
+  }
+  @Override
+  public void sortByOpr(Float opr){
+
+  }
 }

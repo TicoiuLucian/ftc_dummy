@@ -27,6 +27,10 @@ public class Team {
   @Column(nullable = false, unique = true)
   private Short internationalId;
 
+  @Column(nullable = false)
+  private float opr;
+
+
   @Transient
   private Country country;
 
